@@ -14,15 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.presentasi_cafix.Model.Taskhehe;
 import com.example.presentasi_cafix.R;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
 public class CreateTask extends AppCompatActivity {
 
     private TextInputEditText taskNameEditText, deadlineEditText, descriptionEditText;
-    private FirebaseFirestore db;
+    private DatabaseReference databaseReference;
     private AutoCompleteTextView categoryEditText;
 
     @SuppressLint("WrongViewCast")
@@ -31,11 +32,13 @@ public class CreateTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
 
-        db = FirebaseFirestore.getInstance();
         taskNameEditText = findViewById(R.id.task_name);
         categoryEditText = findViewById(R.id.category);
         deadlineEditText = findViewById(R.id.deadline);
         descriptionEditText = findViewById(R.id.task_description);
+
+        // Inisialisasi Database Realtime
+        databaseReference = FirebaseDatabase.getInstance().getReference("tasks");
 
         String[] categories = new String[]{"Life", "Sport", "Education"};
 
@@ -46,7 +49,6 @@ public class CreateTask extends AppCompatActivity {
         findViewById(R.id.create_task_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 createTask();
             }
         });
@@ -63,18 +65,23 @@ public class CreateTask extends AppCompatActivity {
             return;
         }
 
+        // Membuat ID unik untuk setiap task
+        String taskId = databaseReference.push().getKey();
+
         Taskhehe task = new Taskhehe(taskName, category, deadline, description);
 
-        db.collection("tasks")
-                .add(task)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(CreateTask.this, "Task Created", Toast.LENGTH_SHORT).show();
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(CreateTask.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+        if (taskId != null) {
+            databaseReference.child(taskId).setValue(task)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(CreateTask.this, "Task Created", Toast.LENGTH_SHORT).show();
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(CreateTask.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        }
     }
+
     public void showDatePicker(View view) {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -82,13 +89,10 @@ public class CreateTask extends AppCompatActivity {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        // Set nilai yang dipilih ke EditText
-                        String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                        deadlineEditText.setText(selectedDate);
-                    }
+                (view1, year1, monthOfYear, dayOfMonth) -> {
+                    // Set nilai yang dipilih ke EditText
+                    String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1;
+                    deadlineEditText.setText(selectedDate);
                 }, year, month, day);
         datePickerDialog.show();
     }

@@ -38,11 +38,10 @@ android {
 }
 
 dependencies {
-    implementation("com.google.firebase:firebase-firestore:24.2.0")
-    implementation("com.google.firebase:firebase-database:20.2.0")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation(libs.firebase.database)
+    implementation(libs.material)
+    implementation(libs.appcompat)
+    implementation(libs.circleimageview)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
