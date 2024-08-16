@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id = "@+id/profile_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/task_icon_menu"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginLeft="130dp"
+        android:src="@drawable/task_list_menu_document_svgrepo_com"
+
+        android:contentDescription="Profile Icon"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/profile_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="24dp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/profile"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mufli Ramadhan"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="32dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="start">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : Ahmad Mufli Ramadhan"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stambuk"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : 13020220227"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cita-Cita"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : pemain basket"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

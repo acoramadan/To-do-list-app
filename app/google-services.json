@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "463661200033",
+    "project_id": "presentasi-cafix",
+    "storage_bucket": "presentasi-cafix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463661200033:android:fbe3be523175ae0f0676e0",
+        "android_client_info": {
+          "package_name": "com.example.presentasi_cafix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlE5iTm7clVNbvSKe9XPcRBUeTv6Re5gg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

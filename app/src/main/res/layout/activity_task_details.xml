@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Task Details"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/task_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Presentasi Workshop Mobile"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+        android:paddingTop="16dp"
+        android:fontFamily="@font/poppins"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/calendar_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_calendar"
+            android:contentDescription="Calendar Icon"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/task_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14 Agustus 2024"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:fontFamily="@font/poppins"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/task_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description\nWorkshop yang sangat mantap."
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:paddingTop="16dp"
+        android:fontFamily="@font/poppins"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="24dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/brown"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:fontFamily="@font/poppins"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Delete"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/red"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:fontFamily="@font/poppins"/>
+    </LinearLayout>
+
+</LinearLayout>
