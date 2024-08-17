@@ -36,7 +36,7 @@ public class UpdateActivity extends AppCompatActivity {
         // Initialize Firebase Reference
         databaseReference = FirebaseDatabase.getInstance().getReference("tasks");
 
-        // Get task ID from intent
+
         taskId = getIntent().getStringExtra("taskId");
 
         if (taskId == null) {
@@ -45,29 +45,30 @@ public class UpdateActivity extends AppCompatActivity {
             return;
         }
 
-        // Set up the back button
+
         ImageView backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> finish());
 
-        // Setup category spinner with an ArrayAdapter
+
         categorySpinner = findViewById(R.id.category_spinner);
         categorySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, new String[]{"Life", "Sport", "Education"}));
 
-        // Initialize input fields
+
         taskNameInput = findViewById(R.id.task_name);
         deadlineInput = findViewById(R.id.deadline);
         descriptionInput = findViewById(R.id.task_description);
 
-        // Retrieve and set data from intent
+        // mengambil data kemudian dan memberikan data ke intent
         taskNameInput.setText(getIntent().getStringExtra("taskName"));
         categorySpinner.setText(getIntent().getStringExtra("category"), false);
         deadlineInput.setText(getIntent().getStringExtra("deadline"));
         descriptionInput.setText(getIntent().getStringExtra("description"));
 
-        // Set up the update button to save the task
         findViewById(R.id.update_task).setOnClickListener(v -> saveTask());
+        findViewById(R.id.back_button).setOnClickListener(view -> {
+            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+        });
 
-        // Set up date picker for deadline input
         deadlineInput.setOnClickListener(this::showDatePicker);
     }
 
@@ -90,10 +91,26 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateTaskById(Map<String, Object> updates) {
+        if (taskId == null || taskId.isEmpty()) {
+            Toast.makeText(UpdateActivity.this, "Error: Task ID is missing", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         DatabaseReference taskRef = databaseReference.child(taskId);
 
         taskRef.updateChildren(updates)
-                .addOnSuccessListener(aVoid -> Toast.makeText(UpdateActivity.this, "Task updated successfully.", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(UpdateActivity.this, "Task updated successfully.", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(UpdateActivity.this, TaskDetails.class);
+                    intent.putExtra("taskId", taskId);
+                    intent.putExtra("taskTitle", updates.get("taskName").toString());
+                    intent.putExtra("taskDate", updates.get("deadline").toString());
+                    intent.putExtra("taskDescription", updates.get("description").toString());
+                    startActivity(intent);
+                    finish();
+                })
                 .addOnFailureListener(e -> Toast.makeText(UpdateActivity.this, "Failed to update task.", Toast.LENGTH_SHORT).show());
     }
+
 }

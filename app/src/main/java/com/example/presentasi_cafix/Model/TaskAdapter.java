@@ -16,7 +16,7 @@ import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private List<Taskhehe> taskList;
+    private final List<Taskhehe> taskList;
 
     public TaskAdapter(List<Taskhehe> taskList) {
         this.taskList = taskList;
@@ -32,16 +32,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Taskhehe task = taskList.get(position);
+
+        holder.taskTitle.setText(task.getTaskName());
+        holder.taskDate.setText(task.getDeadline());
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), TaskDetails.class);
+            intent.putExtra("taskId", task.getId());
             intent.putExtra("taskTitle", task.getTaskName());
             intent.putExtra("taskDate", task.getDeadline());
             intent.putExtra("taskDescription", task.getDescription());
             v.getContext().startActivity(intent);
         });
-        holder.taskTitle.setText(task.getTaskName());
-        holder.taskDate.setText(task.getDeadline());
     }
+
 
     @Override
     public int getItemCount() {

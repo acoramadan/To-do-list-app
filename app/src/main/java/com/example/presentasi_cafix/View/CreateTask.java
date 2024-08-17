@@ -67,10 +67,9 @@ public class CreateTask extends AppCompatActivity {
 
         // Membuat ID unik untuk setiap task
         String taskId = databaseReference.push().getKey();
-        Random random = new Random();
-        int rand = random.nextInt(1000);
-        String id = "id_"+rand;
-        Taskhehe task = new Taskhehe(taskName, category, deadline, description,id);
+
+        // Membuat task baru dengan ID unik
+        Taskhehe task = new Taskhehe(taskName, category, deadline, description, taskId);
 
         if (taskId != null) {
             databaseReference.child(taskId).setValue(task)
