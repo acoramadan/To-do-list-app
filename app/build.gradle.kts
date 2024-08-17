@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation (libs.cardview)
+    implementation (libs.recyclerview)
     implementation(libs.firebase.database)
     implementation(libs.material)
     implementation(libs.appcompat)

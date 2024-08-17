@@ -81,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
+                    android:onClick="showDatePicker"
                     android:drawableEnd="@drawable/ic_calendar"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +100,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/create_task_button"
+                android:id="@+id/update_task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"

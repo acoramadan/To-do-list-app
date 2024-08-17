@@ -19,13 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public class CreateTask extends AppCompatActivity {
 
     private TextInputEditText taskNameEditText, deadlineEditText, descriptionEditText;
     private DatabaseReference databaseReference;
     private AutoCompleteTextView categoryEditText;
-
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +67,10 @@ public class CreateTask extends AppCompatActivity {
 
         // Membuat ID unik untuk setiap task
         String taskId = databaseReference.push().getKey();
-
-        Taskhehe task = new Taskhehe(taskName, category, deadline, description);
+        Random random = new Random();
+        int rand = random.nextInt(1000);
+        String id = "id_"+rand;
+        Taskhehe task = new Taskhehe(taskName, category, deadline, description,id);
 
         if (taskId != null) {
             databaseReference.child(taskId).setValue(task)
@@ -90,7 +92,7 @@ public class CreateTask extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view1, year1, monthOfYear, dayOfMonth) -> {
-                    // Set nilai yang dipilih ke EditText
+
                     String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1;
                     deadlineEditText.setText(selectedDate);
                 }, year, month, day);

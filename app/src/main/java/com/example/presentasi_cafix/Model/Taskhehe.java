@@ -5,12 +5,14 @@ public class Taskhehe {
     private String category;
     private String deadline;
     private String description;
+    private String id;
 
     public Taskhehe() {
 
     }
 
-    public Taskhehe(String taskName, String category, String deadline, String description) {
+    public Taskhehe(String taskName, String category, String deadline, String description,String id) {
+        this.id = id;
         this.taskName = taskName;
         this.category = category;
         this.deadline = deadline;
@@ -47,5 +49,11 @@ public class Taskhehe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
+    public String getId(){
+        return id;
     }
 }
